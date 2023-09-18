@@ -6,12 +6,12 @@ import TextField from "@mui/material/TextField";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import { getAllMovies } from "../api-helpers/api-helpers.js";
+import { Link } from "react-router-dom";
 
-const top100Films = ["Godfather", "Batman", "Avengers"];
 
 const Header = () => {
   const [value, setValue] = useState(0);
-  const [movies,setMovies] = useState([]);
+  const [movies, setMovies] = useState([]);
 
   useEffect(() => {
     getAllMovies()
@@ -20,7 +20,7 @@ const Header = () => {
   }, []);
 
   return (
-    <AppBar sx={{ bgcolor: "#2b2d42" }}>
+    <AppBar position="sticky"  sx={{ bgcolor: "#2b2d42",height:"90px",justifyContent:"center" }}>
       <Toolbar sx={{ marginLeft: "40px", marginRight: "40px" }}>
         <Box width={"20%"}>
           <VideoLibraryIcon sx={{ fontSize: "35px", cursor: "pointer" }} />
@@ -47,9 +47,9 @@ const Header = () => {
             value={value}
             onChange={(e, val) => setValue(val)}
           >
-            <Tab label="Movies" />
-            <Tab label="Admin" />
-            <Tab label="Auth" />
+            <Tab LinkComponent={Link} to="/movies" label="Movies" />
+            <Tab LinkComponent={Link} to="/admin"  label="Admin" />
+            <Tab LinkComponent={Link} to="/auth"  label="Auth" />
           </Tabs>
         </Box>
       </Toolbar>
