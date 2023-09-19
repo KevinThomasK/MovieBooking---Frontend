@@ -1,9 +1,20 @@
-import React from 'react'
+import React from "react";
+import AuthForm from "../Auth/AuthForm";
+import { sendAdminAuthRequest } from "../../api-helpers/api-helpers";
 
 const Admin = () => {
-  return (
-    <div>Admin</div>
-  )
-}
+  const getData = (data) => {
+    console.log("admin", data);
+    sendAdminAuthRequest(data.inputs)
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+  };
 
-export default Admin
+  return (
+    <div>
+      <AuthForm onSubmit={getData} isAdmin={true} />
+    </div>
+  );
+};
+
+export default Admin;
