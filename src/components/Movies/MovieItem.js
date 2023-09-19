@@ -7,7 +7,7 @@ import {
   Button,
 } from "@mui/material";
 
-const MovieItem = () => {
+const MovieItem = ({title,releaseDate,posterUrl,id}) => {
   return (
     <Card
       sx={{
@@ -20,19 +20,18 @@ const MovieItem = () => {
         },
       }}
     >
-      <img height={"50%"} width={"100%"} src="" alt="" />
+      <img positoin="relative" height={"50%"} width={"100%"}  src={posterUrl}  alt={title}  />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          Lizard
+         {title}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          Lizards are a widespread group of squamate reptiles, with over 6,000
-          species, ranging across all continents except Antarctica
+         {new Date(releaseDate).toDateString()}
         </Typography>
       </CardContent>
       <CardActions>
         <Button sx={{ margin: "auto" }} size="small">
-          Share
+          Book Tickets
         </Button>
       </CardActions>
     </Card>
