@@ -36,7 +36,7 @@ const UserProfile = () => {
   };
 
   return (
-    <Box width={"100%"} display={"flex"} marginTop={6} marginX={10}>
+    <Box width={"100%"} display={"flex"} marginTop={6} marginX={12}>
       <>
         {user && (
           <Box
@@ -81,7 +81,7 @@ const UserProfile = () => {
               margin={"auto"}
               display={"flex"}
               flexDirection={"column"}
-              width={"80%"}
+              width={"70%"}
             >
               <List>
                 {bookings.map((booking, index) => (

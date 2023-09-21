@@ -41,7 +41,7 @@ const Booking = () => {
           >
             Book Tickets of movie : {movie.title}
           </Typography>
-          <Box display={"flex"} justifyContent={"center"}>
+          <Box display={"flex"} justifyContent={"center"} marginX={10}>
             <Box
               display={"flex"}
               justifyContent={"column"}

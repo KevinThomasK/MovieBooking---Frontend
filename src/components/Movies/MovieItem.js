@@ -13,8 +13,8 @@ const MovieItem = ({ title, releaseDate, posterUrl, id }) => {
     <Card
       sx={{
         margin: 5,
-        width: 250,
-        height: 320,
+        width: 260,
+        height: 370,
         borderRadius: 5,
         ":hover": {
           boxShadow: "10px 10px 20px #ccc",
@@ -23,13 +23,13 @@ const MovieItem = ({ title, releaseDate, posterUrl, id }) => {
     >
       <img
         positoin="relative"
-        height={"50%"}
+        height={"55%"}
         width={"100%"}
         src={posterUrl}
         alt={title}
       />
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography gutterBottom variant="h6" component="div">
           {title}
         </Typography>
         <Typography variant="body2" color="text.secondary">
@@ -38,9 +38,11 @@ const MovieItem = ({ title, releaseDate, posterUrl, id }) => {
       </CardContent>
       <CardActions>
         <Button
+        
+        fullWidth
           LinkComponent={Link}
           to={`/booking/${id}`}
-          sx={{ margin: "auto" }}
+          sx={{ margin: "auto" ,paddingBottom:"3px"}}
           size="small"
         >
           Book Tickets

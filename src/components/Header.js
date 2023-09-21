@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { AppBar, Box, Toolbar } from "@mui/material";
+import { AppBar, Box, IconButton, Toolbar } from "@mui/material";
 import VideoLibraryIcon from "@mui/icons-material/VideoLibrary";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import { getAllMovies } from "../api-helpers/api-helpers.js";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { adminActions, userActions } from "../Store/index.js";
 
 const Header = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const isAdminLoggedIn = useSelector((state) => state.admin.isLoggedIn);
@@ -18,6 +19,7 @@ const Header = () => {
 
   const [value, setValue] = useState(0);
   const [movies, setMovies] = useState([]);
+  
 
   useEffect(() => {
     getAllMovies()
@@ -29,6 +31,14 @@ const Header = () => {
     dispatch(isAdmin ? adminActions.logout() : userActions.logout());
   };
 
+  const handleChange = (e,val) => {
+    
+    const movie = movies.find((m) => m.title === val);
+    if(isUserLoggedIn){
+      navigate(`/booking/${movie._id}`)
+    }
+  }
+
   return (
     <AppBar
       position="sticky"
@@ -36,10 +46,14 @@ const Header = () => {
     >
       <Toolbar sx={{ marginLeft: "40px", marginRight: "40px" }}>
         <Box width={"20%"}>
-          <VideoLibraryIcon sx={{ fontSize: "35px", cursor: "pointer" }} />
+          <IconButton LinkComponent={Link} to="/" >
+          <VideoLibraryIcon   sx={{ fontSize: "45px", cursor: "pointer",color:"white" }}/>
+          </IconButton>
+         
         </Box>
         <Box width={"30%"} margin={"auto"}>
           <Autocomplete
+          onChange={handleChange}
             id="free-solo-demo"
             freeSolo
             options={movies && movies.map((option) => option.title)}
